@@ -84,6 +84,7 @@ struct Proxy
 
     uint16_t SnellVersion = 0;
     String ServerName;
+    String Scy;
 };
 
 #define SS_DEFAULT_GROUP "SSProvider"
