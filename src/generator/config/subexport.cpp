@@ -1258,6 +1258,8 @@ std::string proxyToSingle(std::vector<Proxy> &nodes, int types, extra_settings &
         case ProxyType::VMess:
             if(!vmess)
                 continue;
+            if (hostname == host)
+                host = "";
             proxyStr = "vmess://" + base64Encode(vmessLinkConstruct(remark, hostname, port, faketype, id, aid, transproto, path, host, (tlssecure ? "tls" : ""), scy, sni));
             break;
         case ProxyType::Trojan:
