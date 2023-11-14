@@ -14,6 +14,7 @@ custom:
 #  mellow_rule_base: base/mellow.conf
 #  quan_rule_base: base/quan.conf
 #  quanx_rule_base: base/quanx.conf
+#  stash_rule_base: base/stash.yml
 
 #  rename_node:
 #  - {import: snippet/rename.txt}

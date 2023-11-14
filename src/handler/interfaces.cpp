@@ -364,6 +364,7 @@ std::string subconverter(RESPONSE_CALLBACK_ARGS)
     /// for external configuration
     std::string lClashBase = global.clashBase, lSurgeBase = global.surgeBase, lMellowBase = global.mellowBase, lSurfboardBase = global.surfboardBase;
     std::string lQuanBase = global.quanBase, lQuanXBase = global.quanXBase, lLoonBase = global.loonBase, lSSSubBase = global.SSSubBase;
+    std::string lstashBase = global.stashBase;
 
     /// validate urls
     argEnableInsert.define(global.enableInsert);
@@ -459,6 +460,7 @@ std::string subconverter(RESPONSE_CALLBACK_ARGS)
                     checkExternalBase(extconf.quan_rule_base, lQuanBase);
                     checkExternalBase(extconf.quanx_rule_base, lQuanXBase);
                     checkExternalBase(extconf.loon_rule_base, lLoonBase);
+                    checkExternalBase(extconf.stash_rule_base, lstashBase);
 
                     if(extconf.surge_ruleset.size())
                         lCustomRulesets = extconf.surge_ruleset;
@@ -885,7 +887,7 @@ std::string subconverter(RESPONSE_CALLBACK_ARGS)
         }
         else
         {
-            if(render_template(fetchFile(lClashBase, proxy, global.cacheConfig), tpl_args, base_content, global.templatePath) != 0)
+            if(render_template(fetchFile(lstashBase, proxy, global.cacheConfig), tpl_args, base_content, global.templatePath) != 0)
             {
                 *status_code = 400;
                 return base_content;

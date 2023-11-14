@@ -19,6 +19,7 @@ common:
   quanx_rule_base: base/all_base.tpl
   loon_rule_base: base/all_base.tpl
   sssub_rule_base: base/all_base.tpl
+  stash_rule_base: base/all_base.tpl
   proxy_config: SYSTEM
   proxy_ruleset: SYSTEM
   proxy_subscription: NONE
