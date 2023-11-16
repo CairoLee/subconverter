@@ -45,6 +45,7 @@ struct Settings
     RegexMatchConfigs renames, emojis;
     bool addEmoji = false, removeEmoji = false, appendType = false, filterDeprecated = true;
     tribool UDPFlag, TFOFlag, skipCertVerify, TLS13Flag, enableInsert;
+    bool allowEmptyNode = false;
     bool enableSort = false, updateStrict = false;
     bool clashUseNewField = false;
     std::string clashProxiesStyle = "flow";

@@ -302,6 +302,7 @@ void readYAMLConf(YAML::Node &node)
             eraseElements(tempArray);
         }
     }
+    global.allowEmptyNode = safe_as<bool>(section["allow_empty_node"]);
     global.enableInsert = safe_as<std::string>(section["enable_insert"]);
     if(section["insert_url"].IsSequence())
     {
@@ -594,6 +595,7 @@ void readTOMLConf(toml::value &root)
                   "api_access_token", global.accessToken,
                   "exclude_remarks", global.excludeRemarks,
                   "include_remarks", global.includeRemarks,
+                  "allow_empty_node", global.allowEmptyNode,
                   "enable_insert", global.enableInsert,
                   "prepend_insert_url", global.prependInsert,
                   "enable_filter", filter,
@@ -829,6 +831,7 @@ void readConf()
     ini.get_if_exist("api_access_token", global.accessToken);
     ini.get_if_exist("default_url", global.defaultUrls);
     global.enableInsert = ini.get("enable_insert");
+    global.allowEmptyNode = ini.get_bool("allow_empty_node");
     ini.get_if_exist("insert_url", global.insertUrls);
     ini.get_bool_if_exist("prepend_insert_url", global.prependInsert);
     if(ini.item_prefix_exist("exclude_remarks"))

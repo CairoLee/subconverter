@@ -24,6 +24,7 @@ common:
   proxy_ruleset: SYSTEM
   proxy_subscription: NONE
   append_proxy_type: false
+  allow_empty_node: false
 
 userinfo:
   stream_rule: 

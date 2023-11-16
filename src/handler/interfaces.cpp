@@ -347,6 +347,7 @@ std::string subconverter(RESPONSE_CALLBACK_ARGS)
     tribool argGenClashScript = getUrlArg(argument, "script"), argEnableInsert = getUrlArg(argument, "insert");
     tribool argSkipCertVerify = getUrlArg(argument, "scv"), argFilterDeprecated = getUrlArg(argument, "fdn"), argExpandRulesets = getUrlArg(argument, "expand"), argAppendUserinfo = getUrlArg(argument, "append_info");
     tribool argPrependInsert = getUrlArg(argument, "prepend"), argGenClassicalRuleProvider = getUrlArg(argument, "classic"), argTLS13 = getUrlArg(argument, "tls13");
+    tribool argAllowEmptyNode = getUrlArg(argument, "allow_empty_node");
 
     std::string base_content, output_content;
     ProxyGroupConfigs lCustomProxyGroups = global.customProxyGroups;
@@ -370,7 +371,9 @@ std::string subconverter(RESPONSE_CALLBACK_ARGS)
     argEnableInsert.define(global.enableInsert);
     if(!argUrl.size() && (!global.APIMode || authorized))
         argUrl = global.defaultUrls;
-    if((!argUrl.size() && !(global.insertUrls.size() && argEnableInsert)) || !argTarget.size())
+
+    argAllowEmptyNode.define(global.allowEmptyNode);
+    if(!argAllowEmptyNode && ((!argUrl.size() && !(global.insertUrls.size() && argEnableInsert)) || !argTarget.size()))
     {
         *status_code = 400;
         return "Invalid request!";
@@ -605,7 +608,7 @@ std::string subconverter(RESPONSE_CALLBACK_ARGS)
         groupID++;
     }
     //exit if found nothing
-    if(!nodes.size() && !insert_nodes.size())
+    if (!argAllowEmptyNode && !nodes.size() && !insert_nodes.size())
     {
         *status_code = 400;
         return "No nodes were found!";
